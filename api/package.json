@@ -1,0 +1,42 @@
+{
+  "name": "quizletclone",
+  "version": "1.0.0",
+  "description": "Clone of one of my favorite applications - Quizlet",
+  "main": "/api/server.js",
+  "scripts": {
+    "dev": "npm-run-all --parallel api:dev client",
+    "start": "node server.js",
+    "api": "node server.js",
+    "api:dev": "nodemon server.js",
+    "client": "cd.. && cd client && npm run start",
+    "clientbuild": "cd client && npm run build",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobDavidFinch/QuizletClone.git"
+  },
+  "author": "Jacob David Dykstra",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.19.0",
+    "npm": "^6.11.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2"
+  },
+  "bugs": {
+    "url": "https://github.com/JacobDavidFinch/QuizletClone/issues"
+  },
+  "homepage": "https://github.com/JacobDavidFinch/QuizletClone#readme"
+}
