@@ -8,3 +8,4 @@ Clone of Quizlet
   - React Query
 - SCSS 
 - CSS Grid
+- Postgres
