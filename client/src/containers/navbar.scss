@@ -1,0 +1,80 @@
+.navbar {
+  padding: 1.5rem 3rem; 
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  display: grid;
+  grid-template-columns: 9.375rem 350px 1fr;
+
+  div:hover {
+    cursor: pointer;
+  }
+
+  .icon {
+    width: 6.375rem;
+    padding: .6rem 0 0 0;
+    text-align: center;
+    margin-right: 3rem;
+  }
+  
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    width: 350px;
+
+    >div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    >div svg {
+      fill: white;
+      width: 20px;
+      margin-right: 5px;
+    }
+    
+    >div:not(:last-child) {
+      border-right: 2px solid rgba(255, 255, 255, 0.1);;
+    }
+
+    >div:hover, >div:hover svg {
+      color: hsla(0,0%,100%,.5);
+      fill: hsla(0,0%,100%,.5);
+    }
+  }
+  
+  .authentication {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 6rem 6rem;
+    justify-content: end;
+
+    >button {
+      border: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    
+    .login {
+      background-color: var(--primary-color);
+      &:hover {
+        color: hsla(0,0%,100%,.5)
+      }
+      
+    }
+    .sign-up {
+      background-color: var(--secondary-color);
+      border-radius: 4px;
+      height: 2.5rem;
+      padding: 0 1rem;
+      &:hover {
+        transition-duration: .4s;
+        color: var(--font-color);
+        background-color: var(--highlight-color);
+      }
+    }
+  }
+}
