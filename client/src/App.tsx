@@ -11,11 +11,8 @@ import {
 } from './context/AuthContext';
 import { FetchProvider } from './context/FetchContext';
 import {Navbar} from './containers/navbar'
-import logo from './logo.svg';
 import './App.scss';
-
 import AppShell from './AppShell';
-
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -37,10 +34,10 @@ const LoadingFallback = () => (
 const UnauthenticatedRoutes = () => (
   <Switch>
     <Route path="/login">
-      <Login />
+      <Home authStatus="login"/>
     </Route>
     <Route path="/signup">
-      <Signup />
+      <Home authStatus="signUp"/>
     </Route>
     <Route exact path="/">
       <Home />
