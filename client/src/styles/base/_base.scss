@@ -1,0 +1,52 @@
+// Fonts
+@import url("https://web-assets-test/css/rcu-fonts-secure.css");
+
+// Global app reset
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+  background-color: #EAEAEA;
+  height: 100vh;
+
+  @include respond(tab-land) {
+    font-size: 56.25%; // 9px
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; // 8px
+  }
+
+  @include respond(phone) {
+    font-size: 62.5%; // 8px
+  }
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "MuseoSans-300" !important;
+  font-size: 1.45rem;
+  // background-color: $color-grey-3;
+  @include respond(phone) {
+    background-color: $color-white;
+  }
+}
+
+h1, h2 {
+  font-family: "AracneCondReg";
+  color: #057742;
+}
+
+h3 {
+  color: #057742;
+}
+
+h4 {
+  color: slategrey;
+}
