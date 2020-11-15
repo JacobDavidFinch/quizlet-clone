@@ -1,50 +1,44 @@
 import { rest } from 'msw'
+import {branchLobbyList, allBranchLobbyList, login, insertMember, updateMember, removeMember} from "./jsonMocks"
 
 export const handlers = [
-  rest.get('/api/lobby-list/branch/:branch', (req, res, ctx) => {
+  rest.post('api/login', (req, res, ctx) => {
     return res(
-      // Respond with a 200 status code
       ctx.status(200),
-      ctx.json([{      
-        phoneNum: '7073641211',
-        firstName: 'John',
-        lastName: 'Smith',
-        ticket: '1211SMIT',
-        entryDate: '11/09/2020',
-        entryTime: '10:06 AM',
-        serviceDate: '11/09/2020',
-        serviceTime: '10:11 AM',
-        branch: 'Petaluma'
-      }, {      
-        phoneNum: '7073641234',
-        firstName: 'Walter',
-        lastName: 'White',
-        ticket: '1234WHIT',
-        entryDate: '11/09/2020',
-        entryTime: '10:07 AM',
-        serviceDate: '11/09/2020',
-        serviceTime: '10:11 AM',
-        branch: 'Petaluma'
-      }]),
+      ctx.json(login),
     )
   }),
-  rest.get('/api/lobby-list/ticket/:ticket', (req, res, ctx) => {
+  rest.get('/api/lobby-list/branch/:branch', (req, res, ctx) => {
     return res(
-      // Respond with a 200 status code
       ctx.status(200),
-      ctx.json({      
-        phoneNum: '7073641211',
-        firstName: 'John',
-        lastName: 'Smith',
-        ticket: '1211SMIT',
-        entryDate: '11/09/2020',
-        entryTime: '10:06 AM',
-        serviceDate: '11/09/2020',
-        serviceTime: '10:11 AM',
-        branch: 'Petaluma'
-      }),
+      ctx.json(branchLobbyList),
     )
-  })
+  }),
+  rest.get('/api/lobby-list/all-branches', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(allBranchLobbyList),
+    )
+  }),
+  rest.post('api/check-in/member', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(insertMember)
+    )
+  }),
+  rest.put('api/service-member/member', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(updateMember)
+    )
+  }),
+  rest.delete('api/checkout/member', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(removeMember)
+    )
+  }),
+ 
 ]
 
 // Received from Garrett - What the data team is thinking for the table columns: Phone | First | Last | ExternalIdentifier (Truncated phone + Last) |Entry Date | Entry time | Service Date | Service Time | User Number (Servicing Person) | branch | Entry Channel | Reason Code | Action Code | Joint indicator | GUID | Device Type | OS | 
