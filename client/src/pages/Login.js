@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import * as Yup from 'yup';
 import { AuthContext } from '../context/AuthContext';
-import { publicFetch } from './../util/fetch';
+import { publicFetch } from '../utils/api/fetch';
 import { Redirect } from 'react-router-dom';
 
 const LoginSchema = Yup.object().shape({

@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import PageTitle from '../components/common/PageTitle';
 import { FetchContext } from '../context/FetchContext';
-import { formatCurrency } from './../util';
+import { formatCurrency } from '../utils';
 import InventoryItemForm from './../components/InventoryItemForm';
 import DangerButton from './../components/common/DangerButton';
 import FormError from './../components/FormError';

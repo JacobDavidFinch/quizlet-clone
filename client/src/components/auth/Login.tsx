@@ -1,19 +1,19 @@
 import React from 'react';
-import {Modal} from '../common/Modal';
+// import {Modal} from '../common/modal';
 
 export function Login(){
     return (
-        <Modal>
-            <div>
-            <div>Log in</div>
-            <div>X</div>
-          </div>
-          {/* <GoogleAuth />
-          <FacebookAuth />
-          <AppleAuth /> */}
-          <TextInput />
-          <TextInput />
-          <div>Forgot?</div>
-        </Modal>
+        <div>
+            {/* <div className="modal-header">
+                <div>Log in</div>
+                <div>X</div>
+            </div>
+            <div className="forgot-pass">Forgot?</div> */}
+        </div>
     )
 }
+
+// </Modal>
+     {/* <GoogleAuth />
+          <FacebookAuth />
+          <AppleAuth /> */}

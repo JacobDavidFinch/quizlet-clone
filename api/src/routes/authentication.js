@@ -1,11 +1,28 @@
 import express from 'express'
+const jwt = require('express-jwt');
+const jwtDecode = require('jwt-decode');
 
 function getAuthenticationRoutes() {
   const router = express.Router()
   router.post('/', authenicate)
-  router.get('/subtract', subtract)
   return router
 }
+
+const requireAuth = jwt({
+  secret: process.env.JWT_SECRET,
+  audience: 'api.orbit',
+  issuer: 'api.orbit'
+});
+
+const requireAdmin = (req, res, next) => {
+  const { role } = req.user;
+  if (role !== 'admin') {
+    return res
+      .status(401)
+      .json({ message: 'Insufficient role' });
+  }
+  next();
+};
 
 async function authenicate(req, res) {
     try {

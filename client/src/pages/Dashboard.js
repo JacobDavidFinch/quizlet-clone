@@ -12,7 +12,7 @@ import {
   faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { FetchContext } from '../context/FetchContext';
-import { formatCurrency } from './../util';
+import { formatCurrency } from '../utils';
 import DashboardChart from './../components/DashboardChart';
 
 const Dashboard = () => {

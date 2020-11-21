@@ -2,17 +2,14 @@ import express from 'express';
 import 'express-async-errors';
 import logger from 'loglevel';
 import {getRoutes} from './routes';
+const bodyParser = require('body-parser');
 import cors from 'cors';
-import jwt from 'express-jwt';
-import jwtDecode from 'jwt-decode';
-import {
-  createToken,
-  hashPassword,
-  verifyPassword
-} from 'util';
 
 function startServer({port = process.env.PORT} = {}) {
   const app = express()
+  app.use(cors());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
 
   app.use('/api', getRoutes())
 

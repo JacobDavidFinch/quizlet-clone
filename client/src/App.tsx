@@ -13,17 +13,15 @@ import { FetchProvider } from './context/FetchContext';
 import {Navbar} from './containers/navbar'
 import './App.scss';
 import AppShell from './AppShell';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import FourOFour from './pages/FourOFour';
+import { Welcome, FourOFour, Home } from './pages';
 
 
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const Inventory = lazy(() => import('./pages/Inventory'));
-const Account = lazy(() => import('./pages/Account'));
-const Settings = lazy(() => import('./pages/Settings'));
-const Users = lazy(() => import('./pages/Users'));
+// const Home = lazy(() => import('./pages/home'));
+// const Search = lazy(() => import('./pages/Search'));
+// const Create = lazy(() => import('./pages/Create'));
+// const Profile = lazy(() => import('./pages/Profile')); // This will include the Recent, Sets, Folders, Classes
+// const Settings = lazy(() => import('./pages/Settings'));
+// const Users = lazy(() => import('./pages/Users'));
 
 const LoadingFallback = () => (
   <AppShell>
@@ -34,13 +32,13 @@ const LoadingFallback = () => (
 const UnauthenticatedRoutes = () => (
   <Switch>
     <Route path="/login">
-      <Home authStatus="login"/>
+      <Welcome authStatus="login"/>
     </Route>
     <Route path="/signup">
-      <Home authStatus="signUp"/>
+      <Welcome authStatus="signUp"/>
     </Route>
     <Route exact path="/">
-      <Home />
+      <Welcome />
     </Route>
     <Route path="*">
       <FourOFour />
@@ -64,41 +62,14 @@ const AuthenticatedRoute = ({ children, ...rest }) => {
   );
 };
 
-const AdminRoute = ({ children, ...rest }) => {
-  const auth = useContext(AuthContext);
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        auth.isAuthenticated() && auth.isAdmin() ? (
-          <AppShell>{children}</AppShell>
-        ) : (
-          <Redirect to="/" />
-        )
-      }
-    ></Route>
-  );
-};
 
 const AppRoutes = () => {
   return (
     <>
       <Suspense fallback={<LoadingFallback />}>
         <Switch>
-          <AuthenticatedRoute path="/dashboard">
-            <Dashboard />
-          </AuthenticatedRoute>
-          <AdminRoute path="/inventory">
-            <Inventory />
-          </AdminRoute>
-          <AuthenticatedRoute path="/account">
-            <Account />
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path="/settings">
-            <Settings />
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path="/users">
-            <Users />
+          <AuthenticatedRoute path="/home">
+            <Home />
           </AuthenticatedRoute>
           <UnauthenticatedRoutes />
         </Switch>
@@ -112,7 +83,7 @@ function App() {
     <Router>
       <AuthProvider>
         <FetchProvider>
-          <div className="bg-gray-100">
+          <div>
             <AppRoutes />
           </div>
         </FetchProvider>
@@ -122,3 +93,5 @@ function App() {
 }
 
 export default App;
+
+//NOTE: Admin routes will probably exist in the actual site, but will not exist in this clone
