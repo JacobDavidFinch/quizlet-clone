@@ -1,3 +1,4 @@
+console.log('here');
 import express from 'express'
 const app = express();
 const router = express.Router();
@@ -9,8 +10,10 @@ router.post('/client-error', (req, res) => {
   res.sendStatus(200);
 })
 
-router.get('/signup', signup)
-router.get('/login', authenticate)
+console.log('here');
+
+router.post('/signup', signup)
+router.post('/login', authenticate)
 
 const attachUser = (req, res, next) => {
   const token = req.headers.authorization;

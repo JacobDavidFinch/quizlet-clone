@@ -1,18 +1,26 @@
+const initOptions = {/* options as documented below */};
+const pgp = require('pg-promise')(initOptions);
 const {
-    createToken,
-    hashPassword,
-    verifyPassword
-  } = require('../utils');
+  createToken,
+  hashPassword,
+  verifyPassword
+} = require('../utils');
 const jwt = require('express-jwt');
 const jwtDecode = require('jwt-decode');
 
+const { NODE_ENV, PG_CONNECT } = process.env;
+const db = pgp(PG_CONNECT)
+
 export const signup = async (req, res, next) => {
+  console.log(req.body);
     // try {
         const { email, firstName, lastName } = req.body;
     
         const hashedPassword = await hashPassword(
           req.body.password
-        );
+        ).catch(err => console.log(err));
+
+        console.log(hashedPassword);
     
         const userData = {
           email: email.toLowerCase(),
@@ -73,6 +81,7 @@ export const signup = async (req, res, next) => {
 }
 
 export const authenticate = async (req, res, next) => {
+  console.log(req);
     // try {
     //     const { email, password } = req.body;
     

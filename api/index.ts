@@ -2,15 +2,14 @@
 
 import dotenv from 'dotenv';
 dotenv.config();
+const { NODE_ENV, PG_CONNECT } = process.env;
 
 import express from "express";
 const app = express();
-const path = require("path")
-const  bodyParser = require('body-parser')
-const cors = require('cors');
-
-const {handleApiError} = require('./utils/logs/handleError');
-const { NODE_ENV } = process.env;
+import path from "path";
+import  bodyParser from 'body-parser';
+import cors from 'cors';
+import {handleApiError} from './utils/logs/handleError';
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,7 +18,6 @@ app.use(bodyParser.json());
 const routes = require("./routes");
 app.use('/api', routes);
 app.use(handleApiError); // handle errors in routes
-
 
 const PORT = (NODE_ENV === "production" || NODE_ENV === "test") ? process.env.PORT : 5000;
 
@@ -33,5 +31,5 @@ if (NODE_ENV === "production" || NODE_ENV === "test") {
 } 
 
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
