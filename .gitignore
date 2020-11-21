@@ -6,11 +6,24 @@
 .pnp.js
 package-lock.json
 dist
-logs/
-.env
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
 
 # debug
 error.log*
+logs
 .*log
 iisnode
 npm-debug.log*
@@ -22,6 +35,3 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
-# vercel
-.vercel

@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build-server": "tsc",
+    "build-client": "cd client && npm run build",
+    "client": "cd client && npm run start",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "server": "cd server && npm run watch-node"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "concurrently": "^4.1.0",
+    "prettier": "^2.1.2",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-typescript": "^1.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-formatter-pretty": "^2.1.1",
+    "eslint-plugin-eslint-comments": "^3.1.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-unicorn": "^8.0.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "typescript": "^3.9.7"
+  }
+}

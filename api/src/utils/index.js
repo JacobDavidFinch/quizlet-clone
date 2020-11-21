@@ -1,7 +1,8 @@
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const createToken = user => {
+export const createToken = user => {
   // Sign the JWT
   if (!user.role) {
     throw new Error('No user role specified');
@@ -11,15 +12,13 @@ const createToken = user => {
       sub: user._id,
       email: user.email,
       role: user.role,
-      iss: 'api.orbit',
-      aud: 'api.orbit'
     },
     process.env.JWT_SECRET,
     { algorithm: 'HS256', expiresIn: '1h' }
   );
 };
 
-const hashPassword = password => {
+export const hashPassword = password => {
   return new Promise((resolve, reject) => {
     // Generate a salt at level 12 strength
     bcrypt.genSalt(12, (err, salt) => {
@@ -36,7 +35,7 @@ const hashPassword = password => {
   });
 };
 
-const verifyPassword = (
+export const verifyPassword = (
   passwordAttempt,
   hashedPassword
 ) => {
@@ -57,9 +56,3 @@ const requireAdmin = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  createToken,
-  hashPassword,
-  verifyPassword,
-  requireAdmin
-};
