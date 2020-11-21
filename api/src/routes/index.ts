@@ -1,9 +1,11 @@
-const router = require('express').Router();
-import {clientLogger} from "../logs/logConfigs";
-import  { signup, authenticate } from '../controller';
+import express from 'express'
+const app = express();
+const router = express.Router();
+// import {clientLogger} from "../logs/logConfigs";
+import  { signup, authenticate } from '../controllers'
 
 router.post('/client-error', (req, res) => {
-  clientLogger.error(req.body)
+  // clientLogger.error(req.body)
   res.sendStatus(200);
 })
 
@@ -17,7 +19,7 @@ const attachUser = (req, res, next) => {
       .status(401)
       .json({ message: 'Authentication invalid' });
   }
-  const decodedToken = jwtDecode(token.slice(7));
+  const decodedToken = false//jwtDecode(token.slice(7));
 
   if (!decodedToken) {
     return res.status(401).json({
