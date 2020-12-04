@@ -1,7 +1,7 @@
 import React from 'react';
 // import {Modal} from '../common/modal';
 
-export function Login(){
+export function Login() {
     return (
         <div>
             {/* <div className="modal-header">
@@ -10,10 +10,12 @@ export function Login(){
             </div>
             <div className="forgot-pass">Forgot?</div> */}
         </div>
-    )
+    );
 }
 
 // </Modal>
-     {/* <GoogleAuth />
-          <FacebookAuth />
-          <AppleAuth /> */}
+// {
+//     /* <GoogleAuth />
+//           <FacebookAuth />
+//           <AppleAuth /> */
+// }

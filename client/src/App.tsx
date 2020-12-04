@@ -1,10 +1,6 @@
 import React, { lazy, Suspense, useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-import rootReducer from './reducers';
-import { AuthProvider, AuthContext } from './context/AuthContext';
-import { FetchProvider } from './context/FetchContext';
+import { shallowEqual, useSelector } from 'react-redux';
 import { Navbar } from './containers/navbar';
 import './App.scss';
 import AppShell from './AppShell';
@@ -16,10 +12,6 @@ import { Welcome, FourOFour, Home } from './pages';
 // const Profile = lazy(() => import('./pages/Profile')); // This will include the Recent, Sets, Folders, Classes
 // const Settings = lazy(() => import('./pages/Settings'));
 // const Users = lazy(() => import('./pages/Users'));
-
-const store = configureStore({
-    reducer: rootReducer,
-});
 
 const LoadingFallback = () => (
     <AppShell>
@@ -44,19 +36,33 @@ const UnauthenticatedRoutes = () => (
     </Switch>
 );
 
+interface Auth {
+    token: null | string;
+    expiresAt: null | number;
+    userInfo: any;
+    isAdmin: boolean;
+    isAuthenticated: boolean;
+}
+interface RootState {
+    auth: Auth;
+}
+
 const AuthenticatedRoute = ({ children, ...rest }) => {
-    const auth = useContext(AuthContext);
-    return (
-        <Route
-            {...rest}
-            render={() => (auth.isAuthenticated() ? <AppShell>{children}</AppShell> : <Redirect to='/' />)}
-        ></Route>
-    );
+    const auth = useSelector((state: RootState) => state.auth, shallowEqual);
+    console.log('here');
+    console.log(auth);
+    return <div>null</div>;
+    // return <Route {...rest}></Route>;
+    // render={() => (auth.isAuthenticated() ? <AppShell>{children}</AppShell> : <Redirect to='/' />)}
 };
 
-const AppRoutes = () => {
+function App() {
+    const auth = useSelector((state: RootState) => state.auth, shallowEqual);
+    console.log('here');
+    console.log(auth);
+
     return (
-        <>
+        <Router>
             <Suspense fallback={<LoadingFallback />}>
                 <Switch>
                     <AuthenticatedRoute path='/home'>
@@ -65,20 +71,6 @@ const AppRoutes = () => {
                     <UnauthenticatedRoutes />
                 </Switch>
             </Suspense>
-        </>
-    );
-};
-
-function App() {
-    return (
-        <Router>
-            <AuthProvider>
-                <FetchProvider>
-                    <div>
-                        <AppRoutes />
-                    </div>
-                </FetchProvider>
-            </AuthProvider>
         </Router>
     );
 }
