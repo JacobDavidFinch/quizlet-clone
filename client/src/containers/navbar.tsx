@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaBars, FaSearch, FaChevronDown } from 'react-icons/fa';
 import { useWindowSize } from '../hooks/useWindowSize';
-import './navbar.scss';
 
 type NavBar = {
     isAuthenticated: boolean;
@@ -99,8 +98,8 @@ function AuthActions({ isAuthenticated }) {
             ) : (
                 <>
                     <button className='search'>Search</button>
-                    <button className='login'>Log in</button>
-                    <button className='sign-up'>Sign up</button>
+                    <button className='login button wrapped-button'>Log in</button>
+                    <button className='sign-up button wrapped-button'>Sign up</button>
                 </>
             )}
         </div>

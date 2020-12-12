@@ -4,7 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import rootReducer from './redux/reducers';
-import './index.scss';
+import './styles/main.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

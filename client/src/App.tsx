@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Navbar } from './containers/navbar';
-import './App.scss';
 import AppShell from './AppShell';
 import { Welcome, FourOFour, Home } from './pages';
 

@@ -51,6 +51,5 @@ module.exports = {
     // Common abbreviations are known and readable
     "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
-    "prettier/prettier": ["error"]
   },
 }

@@ -1,4 +1,3 @@
-console.log('here');
 import express from 'express'
 const app = express();
 const router = express.Router();
@@ -10,8 +9,7 @@ router.post('/client-error', (req, res) => {
   res.sendStatus(200);
 })
 
-console.log('here');
-
+// Auth
 router.post('/signup', signup)
 router.post('/login', authenticate)
 

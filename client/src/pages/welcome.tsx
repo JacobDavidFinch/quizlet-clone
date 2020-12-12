@@ -1,5 +1,5 @@
 import React from 'react';
-import './welcome.scss';
+import image from '../utils/assets/images/welcome-1.png';
 
 export function Welcome() {
     return (
@@ -21,11 +21,11 @@ function Header() {
             <div className='welcome__left-section'>
                 <h1>Become your most unstoppable self</h1>
                 <p>Master any subject, one success at a time.</p>
-                <button>Get Started</button>
+                <button className='button wrapped-button'>Get Started</button>
                 {/*! I'm a teach and I'm a parent pages */}
             </div>
             <div className='welcome__right-section'>
-                <img width='682' />
+                <img width='682' src={image} />
                 <div>QUIZLET IS FOR</div>
                 {imageQuotes.map((quote, i) => (
                     <div key={i}>quote</div>

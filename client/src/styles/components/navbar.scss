@@ -1,7 +1,7 @@
 
 .navbar {
   padding: 1.5rem 3rem; 
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   color: white;
   font-weight: 500;
   display: grid;
@@ -49,7 +49,7 @@
   .authentication {
     display: grid;
     width: 100%;
-    grid-template-columns: 6rem 6rem;
+    grid-template-columns: auto auto;
     justify-content: end;
 
     >button {
@@ -60,23 +60,12 @@
     }
     
     .login {
-      background-color: var(--primary-color);
+      background-color: $primary-color;
       &:hover {
         color: hsla(0,0%,100%,.5)
       }
-      
     }
-    .sign-up {
-      background-color: var(--secondary-color);
-      border-radius: 4px;
-      height: 2.5rem;
-      padding: 0 1rem;
-      &:hover {
-        transition-duration: .4s;
-        color: var(--font-color);
-        background-color: var(--highlight-color);
-      }
-    }
+
   }
 }
 

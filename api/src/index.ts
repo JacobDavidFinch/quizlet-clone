@@ -13,15 +13,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use((req, res, next) => {
-  console.log('here');
-  next();
-})
 app.use(bodyParser.json());
-  app.use((req, res, next) => {
-    console.log('here');
-    next();
-  })
 
 const routes = require("./routes");
 app.use('/api', routes);
