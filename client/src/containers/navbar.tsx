@@ -1,8 +1,15 @@
 import React from 'react';
-import './navbar.scss';
 import { FaBars, FaSearch, FaChevronDown } from 'react-icons/fa';
+import { useWindowSize } from '../hooks/useWindowSize';
+import './navbar.scss';
 
-export const Navbar = ({ authenticated = 'idle' }) => {
+type NavBar = {
+    isAuthenticated: boolean;
+};
+
+export const Navbar = ({ isAuthenticated }: NavBar) => {
+    const windowSize = useWindowSize();
+
     return (
         <div className='navbar'>
             <div className='icon'>
@@ -15,73 +22,87 @@ export const Navbar = ({ authenticated = 'idle' }) => {
                     </svg>
                 </div>
             </div>
-            <div className='wide-screen'>
-                <div className='actions'>
-                    <div className='search'>
-                        <FaSearch /> Search
-                    </div>
-                    <div className='browse'>
-                        <BrowseSvg />
-                        Browse
-                    </div>
-                    <div className='create'>
-                        <CreateCardSvg />
-                        Create
-                    </div>
-                </div>
-                <div className='authentication'>
-                    {authenticated === 'success' ? (
-                        <div>
-                            <div>User Icon</div>
-                            <div>Username</div>
-                            <FaChevronDown />
+            <div className='actions'>
+                {windowSize.width && windowSize.width > 778 ? (
+                    <>
+                        <div className='search'>
+                            <FaSearch /> Search
                         </div>
-                    ) : (
-                        <>
-                            <button className='login'>Log in</button>
-                            <button className='sign-up'>Sign up</button>
-                        </>
-                    )}
-                </div>
+                        <div className='browse'>
+                            <BrowseSvg />
+                            Browse
+                        </div>
+                        <div className='create'>
+                            <CreateCardSvg />
+                            Create
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className='search'>
+                            <CreateCardSvg />
+                        </div>
+                        <div className='browse'>
+                            <FaSearch />
+                        </div>
+                        <div className='create'>
+                            <FaBars />
+                        </div>
+                    </>
+                )}
             </div>
-            <div className='med-screen'>
-                <div className='actions'>
-                    <div className='search'>
-                        <CreateCardSvg />
-                    </div>
-                    <div className='browse'>
-                        <FaSearch />
-                    </div>
-                    <div className='create'>
-                        <FaBars />
-                    </div>
-                </div>
-            </div>
+            <AuthActions isAuthenticated={isAuthenticated} />
         </div>
     );
 };
 
-const CreateCardSvg = () => (
-    <svg id='create-set' viewBox='0 0 24 24'>
-        <path
-            fillRule='evenodd'
-            clipRule='evenodd'
-            d='M4.375 18c0 .898.728 1.625 1.625 1.625h12c.898 0 1.625-.727 1.625-1.625v-4a.625.625 0 1 0-1.25 0v4a.375.375 0 0 1-.375.375H6A.375.375 0 0 1 5.625 18V6c0-.207.168-.375.375-.375h4.25a.625.625 0 1 0 0-1.25H6c-.897 0-1.625.728-1.625 1.625v12z'
-        ></path>
-        <path d='M6 19.625v-.375.375zM4.375 18h.375-.375zM18 19.625V20v-.375zM19.625 18h-.375.375zm0-4H20h-.375zm-1.25 0h.375-.375zm0 4H18h.375zm-.375.375v.375-.375zm-12 0V18v.375zM5.625 18H6h-.375zm0-12H5.25h.375zM6 5.625V6v-.375zm4.25 0V5.25v.375zm0-1.25V4v.375zm-4.25 0v.375-.375zM4.375 6H4h.375zM6 19.25c-.69 0-1.25-.56-1.25-1.25H4a2 2 0 0 0 2 2v-.75zm12 0H6V20h12v-.75zM19.25 18c0 .69-.56 1.25-1.25 1.25V20a2 2 0 0 0 2-2h-.75zm0-4v4H20v-4h-.75zm-.25-.25a.25.25 0 0 1 .25.25H20a1 1 0 0 0-1-1v.75zm-.25.25a.25.25 0 0 1 .25-.25V13a1 1 0 0 0-1 1h.75zm0 4v-4H18v4h.75zm-.75.75a.75.75 0 0 0 .75-.75H18v.75zm-12 0h12V18H6v.75zM5.25 18c0 .414.336.75.75.75V18h-.75zm0-12v12H6V6h-.75zM6 5.25a.75.75 0 0 0-.75.75H6v-.75zm4.25 0H6V6h4.25v-.75zM10.5 5a.25.25 0 0 1-.25.25V6a1 1 0 0 0 1-1h-.75zm-.25-.25a.25.25 0 0 1 .25.25h.75a1 1 0 0 0-1-1v.75zM6 4.75h4.25V4H6v.75zM4.75 6c0-.69.56-1.25 1.25-1.25V4a2 2 0 0 0-2 2h.75zm0 12V6H4v12h.75z'></path>
-        <path
-            fillRule='evenodd'
-            clipRule='evenodd'
-            d='M16.938 4.438v2.625h2.625a.438.438 0 0 1-.001.875h-2.625v2.625c0 .24-.196.437-.437.437a.439.439 0 0 1-.438-.438V7.938h-2.625A.439.439 0 0 1 13 7.5a.44.44 0 0 1 .438-.438h2.624V4.438a.439.439 0 0 1 .875 0z'
-            stroke='currentColor'
-        ></path>
-    </svg>
-);
+/* {windowSize.width && windowSize.width > 885 ? (<div>Username</div>) : null} */
 
-const BrowseSvg = () => (
-    <svg id='subjects' viewBox='0 0 24 24'>
-        <rect x='4.8' y='3.605' width='2.4' height='16.8' rx='1.2'></rect>
-        <rect x='9.6' y='3.606' width='2.4' height='16.8' rx='1.2'></rect>
-        <rect x='13.331' y='4.262' width='2.4' height='16.8' rx='1.2' transform='rotate(-16 13.331 4.262)'></rect>
-    </svg>
-);
+function CreateCardSvg() {
+    return (
+        <svg id='create-set' viewBox='0 0 24 24'>
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M4.375 18c0 .898.728 1.625 1.625 1.625h12c.898 0 1.625-.727 1.625-1.625v-4a.625.625 0 1 0-1.25 0v4a.375.375 0 0 1-.375.375H6A.375.375 0 0 1 5.625 18V6c0-.207.168-.375.375-.375h4.25a.625.625 0 1 0 0-1.25H6c-.897 0-1.625.728-1.625 1.625v12z'
+            ></path>
+            <path d='M6 19.625v-.375.375zM4.375 18h.375-.375zM18 19.625V20v-.375zM19.625 18h-.375.375zm0-4H20h-.375zm-1.25 0h.375-.375zm0 4H18h.375zm-.375.375v.375-.375zm-12 0V18v.375zM5.625 18H6h-.375zm0-12H5.25h.375zM6 5.625V6v-.375zm4.25 0V5.25v.375zm0-1.25V4v.375zm-4.25 0v.375-.375zM4.375 6H4h.375zM6 19.25c-.69 0-1.25-.56-1.25-1.25H4a2 2 0 0 0 2 2v-.75zm12 0H6V20h12v-.75zM19.25 18c0 .69-.56 1.25-1.25 1.25V20a2 2 0 0 0 2-2h-.75zm0-4v4H20v-4h-.75zm-.25-.25a.25.25 0 0 1 .25.25H20a1 1 0 0 0-1-1v.75zm-.25.25a.25.25 0 0 1 .25-.25V13a1 1 0 0 0-1 1h.75zm0 4v-4H18v4h.75zm-.75.75a.75.75 0 0 0 .75-.75H18v.75zm-12 0h12V18H6v.75zM5.25 18c0 .414.336.75.75.75V18h-.75zm0-12v12H6V6h-.75zM6 5.25a.75.75 0 0 0-.75.75H6v-.75zm4.25 0H6V6h4.25v-.75zM10.5 5a.25.25 0 0 1-.25.25V6a1 1 0 0 0 1-1h-.75zm-.25-.25a.25.25 0 0 1 .25.25h.75a1 1 0 0 0-1-1v.75zM6 4.75h4.25V4H6v.75zM4.75 6c0-.69.56-1.25 1.25-1.25V4a2 2 0 0 0-2 2h.75zm0 12V6H4v12h.75z'></path>
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M16.938 4.438v2.625h2.625a.438.438 0 0 1-.001.875h-2.625v2.625c0 .24-.196.437-.437.437a.439.439 0 0 1-.438-.438V7.938h-2.625A.439.439 0 0 1 13 7.5a.44.44 0 0 1 .438-.438h2.624V4.438a.439.439 0 0 1 .875 0z'
+                stroke='currentColor'
+            ></path>
+        </svg>
+    );
+}
+
+function BrowseSvg() {
+    return (
+        <svg id='subjects' viewBox='0 0 24 24'>
+            <rect x='4.8' y='3.605' width='2.4' height='16.8' rx='1.2'></rect>
+            <rect x='9.6' y='3.606' width='2.4' height='16.8' rx='1.2'></rect>
+            <rect x='13.331' y='4.262' width='2.4' height='16.8' rx='1.2' transform='rotate(-16 13.331 4.262)'></rect>
+        </svg>
+    );
+}
+
+function AuthActions({ isAuthenticated }) {
+    return (
+        <div className='authentication'>
+            {isAuthenticated ? (
+                <div>
+                    <div>User Icon</div>
+                    <div>Username</div>
+                    <FaChevronDown />
+                </div>
+            ) : (
+                <>
+                    <button className='search'>Search</button>
+                    <button className='login'>Log in</button>
+                    <button className='sign-up'>Sign up</button>
+                </>
+            )}
+        </div>
+    );
+}

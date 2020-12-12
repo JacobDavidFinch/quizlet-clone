@@ -49,11 +49,13 @@ interface RootState {
 
 const AuthenticatedRoute = ({ children, ...rest }) => {
     const auth = useSelector((state: RootState) => state.auth, shallowEqual);
-    console.log('here');
     console.log(auth);
-    return <div>null</div>;
-    // return <Route {...rest}></Route>;
-    // render={() => (auth.isAuthenticated() ? <AppShell>{children}</AppShell> : <Redirect to='/' />)}
+    return (
+        <Route
+            {...rest}
+            render={() => (auth.isAuthenticated ? <AppShell>{children}</AppShell> : <Redirect to='/' />)}
+        ></Route>
+    );
 };
 
 function App() {
@@ -62,16 +64,19 @@ function App() {
     console.log(auth);
 
     return (
-        <Router>
-            <Suspense fallback={<LoadingFallback />}>
-                <Switch>
-                    <AuthenticatedRoute path='/home'>
-                        <Home />
-                    </AuthenticatedRoute>
-                    <UnauthenticatedRoutes />
-                </Switch>
-            </Suspense>
-        </Router>
+        <>
+            <Navbar isAuthenticated={auth.isAuthenticated} />
+            <Router>
+                <Suspense fallback={<LoadingFallback />}>
+                    <Switch>
+                        <AuthenticatedRoute path='/home'>
+                            <Home />
+                        </AuthenticatedRoute>
+                        <UnauthenticatedRoutes />
+                    </Switch>
+                </Suspense>
+            </Router>
+        </>
     );
 }
 

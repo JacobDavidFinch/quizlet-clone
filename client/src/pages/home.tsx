@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from '../images/logo.png';
 
 export const Home = ({ authStatus: string }) => {
     const auth: any = useSelector((state) => state, shallowEqual);

@@ -5,7 +5,7 @@
   color: white;
   font-weight: 500;
   display: grid;
-  grid-template-columns: 9.375rem 350px 1fr;
+  grid-template-columns: 9.375rem 1fr 1fr;
 
   div:hover {
     cursor: pointer;
@@ -79,3 +79,9 @@
     }
   }
 }
+
+@media screen and (min-width: 780px) {
+  .search {
+    display: none;
+  }
+  }
