@@ -4,10 +4,15 @@ import { useWindowSize } from '../hooks/useWindowSize';
 
 type NavBar = {
     isAuthenticated: boolean;
+    setModal: (string) => void;
 };
 
-export const Navbar = ({ isAuthenticated }: NavBar) => {
+export const Navbar = ({ isAuthenticated, setModal }: NavBar) => {
     const windowSize = useWindowSize();
+
+    const handleAuth = (type: 'login' | 'signup') => {
+        setModal(type);
+    };
 
     return (
         <div className='navbar'>

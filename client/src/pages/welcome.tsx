@@ -6,11 +6,14 @@ import image3 from '../utils/assets/images/welcome-3.png';
 import flashImage from '../utils/assets/images/welcome-flash.png';
 import flashDesk from '../utils/assets/images/welcome-desk.png';
 import flashPuzzle from '../utils/assets/images/welcome-puzzle.png';
+import highlightCircle from '../utils/assets/images/highlight-circle.svg';
 
 export function Welcome() {
     return (
         <div className='welcome'>
             <Header />
+            <Main />
+            {/* <Footer /> */}
         </div>
     );
 }
@@ -58,11 +61,13 @@ function Header() {
 
 function Main() {
     return (
-        <div>
-            <div className='welcome__90p-students'>90% of students who use Quizlet report higher grades.</div>
+        <div className='welcome__main'>
+            <div className='welcome__90p-students'>
+                <em>90%</em> of students who use Quizlet report higher grades.
+            </div>
             <section className='welcome__f-cards'>
                 <div>
-                    <h3>You bring the brains, we’ll bring everything else</h3>
+                    <h3>You bring the brains, we’ll bring everything else.</h3>
                     <p>
                         From flashcards to help you learn francais, to games that make it easy to get a handle on
                         history, use a variety of tools to conquer any challenge.
@@ -88,12 +93,11 @@ function Main() {
                 <img src={flashPuzzle} />
             </section>
             <Quotes />
-            <div>
+            <div className='welcome__ready-to-start'>
                 Ready to start getting better grades?
-                <button>Get Started</button>
+                <button className='button wrapped-button'>Get started</button>
             </div>
-            <div>Take your learning with you</div>
-            <Footer />
+            {/* <div>Take your learning with you</div> */}
         </div>
     );
 }
@@ -157,7 +161,7 @@ function Footer() {
     return (
         <div>
             <div className='welcome__footer-columns'>
-                {footerColumns.map(([header, topics]) => (
+                {footerColumns.map(([header, topics]: [string, string[]]) => (
                     <div className='welcome__footer-column'>
                         <div key={header}>{header}</div>
                         {topics.map((topic) => (

@@ -1,7 +1,7 @@
-import React, { lazy, Suspense, useContext } from 'react';
+import React, { lazy, Suspense, useContext, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { shallowEqual, useSelector } from 'react-redux';
-import { Navbar } from './containers/navbar';
+import { Navbar } from './containers/Navbar';
 import AppShell from './AppShell';
 import { Welcome, FourOFour, Home } from './pages';
 
@@ -59,12 +59,11 @@ const AuthenticatedRoute = ({ children, ...rest }) => {
 
 function App() {
     const auth = useSelector((state: RootState) => state.auth, shallowEqual);
-    console.log('here');
-    console.log(auth);
+    const [modal, setModal] = useState('');
 
     return (
         <>
-            <Navbar isAuthenticated={auth.isAuthenticated} />
+            <Navbar isAuthenticated={auth.isAuthenticated} setModal={setModal} />
             <Router>
                 <Suspense fallback={<LoadingFallback />}>
                     <Switch>

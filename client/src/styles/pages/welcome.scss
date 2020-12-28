@@ -1,3 +1,65 @@
+.welcome {
+    background-color: #ffffff;
+
+    &__main {
+        width: 1024px;
+        margin: 0 auto;
+
+    }
+
+    &__90p-students {
+        padding: 10.125rem 0;
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+        width: 100%;
+
+        // > em {
+        //     background-image: url('C:\Users\jacob\Documents\Repos\myProjects\QuizletClone\client\src\utils\assets\images\hightlight-circle.svg');
+        //     background-repeat: no-repeat;
+        //     background-size: 100% 100%;
+        // }
+    }
+
+    &__f-cards, &__puzzle {
+        @include welcomeCopyImage;
+    }
+
+    &__desk {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          h3 {
+                      width: 50%;
+                    }
+                    
+                    p {
+                      margin-top: 3.5rem;
+                    }
+                  }
+                  
+                  img {
+                      margin-right: 5rem;
+                      width: 100%;
+                  }
+    }
+
+    &__ready-to-start {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        button {
+            max-width: 12rem;
+        }
+        
+    }
+
+    
+}
+
 .welcome__header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -68,3 +130,4 @@
         100% {background-color: $highlight-color; width: 100%;}
       }
     }
+

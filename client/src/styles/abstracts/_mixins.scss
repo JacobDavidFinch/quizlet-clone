@@ -23,6 +23,28 @@
   transform: translateX(-50%);
 }
 
+@mixin welcomeCopyImage {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h3 {
+                width: 50%;
+              }
+              
+              p {
+                margin-top: 3.5rem;
+              }
+            }
+            
+            img {
+                margin-left: 5rem;
+                width: 100%;
+            }
+}
+
 // MEDIA QUERY MANAGER
 /*
 0 - 600px Phone

@@ -1,3 +1,3 @@
-export { Home } from './home.tsx';
-export { Welcome } from './welcome.tsx';
+export { Home } from './Home.tsx';
+export { Welcome } from './Welcome.tsx';
 export { FourOFour } from './404.jsx';
